@@ -1,0 +1,31 @@
+app-name: python-model-server
+log-level: WARN
+watcher:
+    models_path: ${PROJECT_HOME}/Simple-Generic-ML-Model-Server/pmmls
+app:
+    port: 9001
+    debug: True
+    environment: test
+logging:
+    version: 1 
+    disable_existing_loggers: true
+    formatters:
+        standard:
+            format: "%(levelname)s <PID %(process)d:%(processName)s> %(name)s.%(funcName)s(): %(message)s"
+    handlers:
+        console:
+            class: logging.StreamHandler
+            level: DEBUG
+            formatter: standard
+            stream: ext://sys.stdout
+    root:
+        level: DEBUG
+        handlers: [console]
+        propagate: True
+    loggers:
+        watcher:
+            level: DEBUG
+            handlers: [console]
+        app:
+            level: DEBUG
+            handlers: [console]
